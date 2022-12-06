@@ -1,0 +1,13 @@
+{
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "datasources": ["docker"],
+      "packageNames": ["nginx"],
+      "versionScheme": "docker"
+    }
+  ],
+  "ignoreDeps": ["boto3"],
+  "ignorePaths": ["app/allsorts/scarborough/**", "app/allsorts/toontours/**"],
+  "dependencyDashboard": true
+}
