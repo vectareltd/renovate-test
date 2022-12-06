@@ -1,0 +1,226 @@
+[tool.poetry]
+name = "vective"
+version = "2.2"
+description = ""
+authors = ["Alex Nathanail <alex@vectare.co.uk>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+celery = "5.2.7"
+Collectfast = "2.2.0"
+Django = "3.2.15"
+django-bootstrap-modal-forms = "2.2.0"
+django-crispy-forms = "1.14.0"
+django-cors-headers = "3.13.0"
+django-decorator-include = "3.0"
+django-extensions = "3.2.0"
+django-import-export = "2.8.0"
+django-mjml = "0.12.0"
+django-select2 = "7.10.0"
+django-tenants = "3.4.4"
+djangorestframework = "3.13.1"
+drf-jwt = "1.19.2"
+gunicorn = "20.1.0"
+Markdown = "3.4.1"
+redis = "4.1.4"
+requests = "2.28.1"
+stripe = "4.2.0"
+tenant-schemas-celery = "2.0.0"
+twilio = "7.12.1"
+weasyprint = "52.5"
+sentry-sdk = "1.11.1"
+psycopg2 = "2.9.3"
+factory-boy = "3.2.1"
+poetry = "1.1.14"
+coverage = "6.4.3"
+django-coverage-plugin = "2.0.3"
+django-anymail = "8.6"
+chardet = "5.0.0"
+django-debug-toolbar = "3.5.0"
+freezegun = "1.2.1"
+Werkzeug = "2.0.3"
+django-csp = "3.7"
+watchdog = { version = "2.1.9", extras = ["watchmedo"] }
+django-qr-code = "3.1.1"
+django-storages = { version = "1.13.1", extras = ["boto3"] }
+django-redis = "5.2.0"
+selenium = "3.141.0"
+pyproj = "3.3.1"
+Authlib = "0.15.5"
+black = "22.6.0"
+tblib = "1.7.0"
+pytest-django = "4.5.2"
+pytest-cov = "3.0.0"
+django-impersonate = "1.8.2"
+beautifulsoup4 = "4.9.3"
+django-bulk-load = "1.2.2"
+social-auth-app-django = "5.0.0"
+social-auth-core = { version = "4.3.0", extras = ["openidconnect"] }
+responses = "0.21.0"
+django-linear-migrations = "^2.5.0"
+mypy = "^0.971"
+django-stubs = "^1.12.0"
+types-chardet = "^5.0.3"
+types-requests = "^2.28.7"
+types-Markdown = "^3.4.0"
+django-stubs-ext = "^0.5.0"
+types-python-dateutil = "^2.8.19"
+djangorestframework-stubs = "^1.7.0"
+flower = "^1.2.0"
+prospector = "^1.7.7"
+pytest-icdiff = "^0.6"
+cryptography = "^37.0.4"
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 150
+target-version = ['py310']
+# https://github.com/psf/black/issues/1473#issuecomment-740008873
+force-exclude = '''
+^/(
+    (.*/migrations/.*\.py)
+  | (.*/.local/.*)
+)
+'''
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+# TODO remove disable-warnings
+addopts = "-ra --reuse-db --disable-warnings"
+python_files = "tests.py"
+DJANGO_SETTINGS_MODULE = "project.settings"
+# TODO enable
+#FAIL_INVALID_TEMPLATE_VARS="True"
+
+# mypy global options:
+
+[tool.mypy]
+python_version = "3.10"
+
+# Defaults from https://sobolevn.me/2019/08/typechecking-django-and-drf
+# And https://blog.wolt.com/engineering/2021/09/30/professional-grade-mypy-configuration/
+check_untyped_defs = true
+disallow_any_generics = true
+#disallow_untyped_calls = true
+disallow_untyped_decorators = true
+ignore_errors = false
+ignore_missing_imports = true
+#ignore_missing_imports = false
+implicit_reexport = false
+strict_optional = true
+strict_equality = true
+no_implicit_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unreachable = true
+warn_no_return = true
+warn_return_any = true
+#disallow_any_imported = true
+#check_untyped_defs = true
+show_error_codes = true
+
+enable_error_code = ['ignore-without-code']
+
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main",
+]
+
+files = [
+    ".",
+]
+exclude = [
+    "scripts/",
+    "/migrations/",
+]
+
+[tool.django-stubs]
+django_settings_module = "project.settings"
+
+[[tool.mypy.overrides]]
+module = "action_trail.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "api.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "backend.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "booking_form.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "clients.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "crm.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "dataportal_backend.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "maps.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "operators.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "operators_public.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "parents.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "privatehire.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "public.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "reports.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "scheduling_system.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "siteconfig.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "sms_integrations.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "utils.import_forms"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "utils.utils"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "project.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "vective.*"
+ignore_errors = true
